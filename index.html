@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: HALLOWEEN</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Mono for the techy vibe, Inter for readable A2 text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['"Space Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        spooky: {
+                            dark: '#0a0a0f',
+                            panel: '#151520',
+                            orange: '#ff6600',
+                            purple: '#9d4edd',
+                            green: '#00ff88'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0f;
+            color: #e2e8f0;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+            border: 1px solid rgba(157, 78, 221, 0.6);
+        }
+        
+        .glow-border-orange {
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+            border: 1px solid rgba(255, 102, 0, 0.6);
+        }
+
+        /* Custom Scrollbar for a techy look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9d4edd; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff6600; 
+        }
+
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .radio-custom:checked + div {
+            background-color: rgba(255, 102, 0, 0.2);
+            border-color: #ff6600;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col items-center p-2 sm:p-6">
+
+    <!-- Header / Nav -->
+    <header class="w-full max-w-4xl mb-4 sm:mb-8 flex flex-col items-center">
+        <h1 class="font-mono text-2xl sm:text-5xl font-bold text-spooky-orange glow-text mb-1 sm:mb-2 text-center leading-tight">
+            <span class="text-spooky-purple">&lt;</span>PROJECT: HALLOWEEN<span class="text-spooky-purple">/&gt;</span>
+        </h1>
+        <p class="font-mono text-xs sm:text-sm text-gray-400 mb-4 sm:mb-6 text-center">Language Level: A2 | Target: CZ</p>
+        
+        <nav class="grid grid-cols-3 gap-2 w-full font-mono text-[11px] sm:text-base">
+            <button onclick="switchTab('tab-system')" id="btn-tab-system" class="nav-btn p-2 sm:px-4 sm:py-2 rounded bg-spooky-orange text-spooky-dark font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <span class="text-lg sm:hidden">💻</span><span>1. Init</span>
+            </button>
+            <button onclick="switchTab('tab-reading')" id="btn-tab-reading" class="nav-btn p-2 sm:px-4 sm:py-2 rounded border border-gray-600 text-gray-300 transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <span class="text-lg sm:hidden">📖</span><span>2. Read</span>
+            </button>
+            <button onclick="switchTab('tab-video')" id="btn-tab-video" class="nav-btn p-2 sm:px-4 sm:py-2 rounded border border-gray-600 text-gray-300 transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <span class="text-lg sm:hidden">📺</span><span>3. Video</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full max-w-4xl flex-grow flex flex-col">
+        
+        <!-- ================= TAB 1: INTRO & FACTS ================= -->
+        <section id="tab-system" class="tab-content flex flex-col gap-4 sm:gap-6 w-full animate-fade-in">
+            <!-- Terminal Intro -->
+            <div class="glow-border bg-spooky-panel rounded-lg p-4 sm:p-6 font-mono text-sm sm:text-base">
+                <div id="typewriter-text" class="text-spooky-green h-24 sm:h-20">
+                    <!-- Text injected by JS -->
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-bold font-mono text-spooky-orange mt-4 glow-text">>> SURPRISING_FACTS.json</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- Fact 1 -->
+                <div class="bg-spooky-panel p-5 rounded-lg border border-gray-700 hover:border-spooky-orange transition-all hover:-translate-y-1">
+                    <div class="text-3xl mb-2">🎃 -> 🧅</div>
+                    <h3 class="font-bold text-lg mb-2 text-white">Not Pumpkins!</h3>
+                    <p class="text-gray-400 text-sm">The first Jack-o'-lanterns were not made from pumpkins. People in Ireland carved scary faces into <strong>turnips</strong> (a white root vegetable). Pumpkins were only used later in America!</p>
+                </div>
+                <!-- Fact 2 -->
+                <div class="bg-spooky-panel p-5 rounded-lg border border-gray-700 hover:border-spooky-purple transition-all hover:-translate-y-1">
+                    <div class="text-3xl mb-2">🕷️</div>
+                    <h3 class="font-bold text-lg mb-2 text-white">The Good Spider</h3>
+                    <p class="text-gray-400 text-sm">Are you scared of spiders? An old myth says that if you see a spider on Halloween, it is not a monster. It is the spirit of a dead family member watching over you.</p>
+                </div>
+                <!-- Fact 3 -->
+                <div class="bg-spooky-panel p-5 rounded-lg border border-gray-700 hover:border-spooky-green transition-all hover:-translate-y-1">
+                    <div class="text-3xl mb-2">🧙‍♀️</div>
+                    <h3 class="font-bold text-lg mb-2 text-white">"Witch" means Smart</h3>
+                    <p class="text-gray-400 text-sm">The English word "witch" comes from an old word <em>wicce</em>. A long time ago, this word did not mean a scary lady. It meant a <strong>"wise woman"</strong> who knew about medicine and nature.</p>
+                </div>
+            </div>
+            
+            <div class="mt-2 flex justify-end">
+                <button onclick="switchTab('tab-reading')" class="bg-spooky-purple hover:bg-purple-600 text-white font-mono py-3 px-6 rounded transition-colors flex items-center gap-2 w-full sm:w-auto justify-center text-lg sm:text-base shadow-lg">
+                    Next Module ->
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: READING ================= -->
+        <section id="tab-reading" class="tab-content hidden flex flex-col gap-4 sm:gap-6 w-full">
+            <div class="glow-border-orange bg-spooky-panel rounded-lg p-4 sm:p-8">
+                <h2 class="text-xl sm:text-2xl font-bold font-mono text-spooky-orange mb-4">FILE: A Tale of Two Holidays</h2>
+                
+                <div class="bg-black/50 p-4 rounded mb-6 border border-gray-700">
+                    <h3 class="font-mono text-spooky-green text-sm mb-2">>> GLOSSARY (Slovníček)</h3>
+                    <ul class="text-sm text-gray-300 grid grid-cols-2 gap-2">
+                        <li><strong>Cemetery:</strong> hřbitov</li>
+                        <li><strong>Grave:</strong> hrob</li>
+                        <li><strong>Respectful:</strong> uctivý</li>
+                        <li><strong>Costume:</strong> kostým</li>
+                    </ul>
+                </div>
+
+                <div class="text-gray-300 space-y-4 text-base sm:text-lg leading-relaxed">
+                    <p>Welcome to the archive. Let's compare two different traditions: <strong>Halloween</strong> and <strong>Dušičky</strong>.</p>
+                    
+                    <p><strong>Halloween</strong> is celebrated on October 31st. It started more than 2,000 years ago with the Celtic people in Europe. They called this festival 'Samhain'. They believed that on this night, the door between the living world and the dead world was open. Ghosts could walk on Earth! Because people were afraid, they wore scary masks and costumes to hide from the ghosts.</p>
+                    
+                    <p>Today, teenagers in the USA and UK love Halloween. They go to loud parties, watch horror movies, and wear cool costumes to get candy.</p>
+                    
+                    <p>In the Czech Republic, you have <strong>Dušičky</strong> (All Souls' Day) on November 2nd. It is very different from Halloween. Dušičky is a quiet and respectful holiday. Families visit the cemetery. They clean the graves, put flowers there, and light candles. They do this to remember family members who died.</p>
+                    
+                    <p>Halloween is loud, fast, and scary. Dušičky is quiet, slow, and sad. But remember this interesting fact: both holidays started for the same reason – to think about the dead.</p>
+                </div>
+            </div>
+
+            <!-- Reading Quiz -->
+            <div class="bg-spooky-panel rounded-lg p-6 border border-gray-700">
+                <h3 class="font-mono text-xl text-spooky-purple mb-4">>> COMPREHENSION_CHECK.exe</h3>
+                
+                <form id="reading-quiz" class="space-y-6">
+                    <!-- Q1 -->
+                    <div>
+                        <p class="font-bold text-white mb-2 text-lg sm:text-base">1. When is Halloween celebrated?</p>
+                        <div class="space-y-3 sm:space-y-2">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq1" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">A) November 1st</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq1" value="correct" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">B) October 31st</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq1" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">C) November 2nd</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div>
+                        <p class="font-bold text-white mb-2 text-lg sm:text-base">2. Why did people wear scary masks in the past?</p>
+                        <div class="space-y-3 sm:space-y-2">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq2" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">A) To get free candy</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq2" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">B) Because they liked horror movies</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq2" value="correct" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">C) To hide from ghosts</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div>
+                        <p class="font-bold text-white mb-2 text-lg sm:text-base">3. What do families do on Dušičky?</p>
+                        <div class="space-y-3 sm:space-y-2">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq3" value="correct" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">A) Light candles on graves</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq3" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">B) Go to loud parties</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq3" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">C) Wear scary costumes</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div>
+                        <p class="font-bold text-white mb-2 text-lg sm:text-base">4. Which word best describes Dušičky?</p>
+                        <div class="space-y-3 sm:space-y-2">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq4" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">A) Fast</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq4" value="correct" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">B) Quiet</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq4" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">C) Loud</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div>
+                        <p class="font-bold text-white mb-2 text-lg sm:text-base">5. What is the main similarity between both holidays?</p>
+                        <div class="space-y-3 sm:space-y-2">
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq5" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">A) They both use pumpkins.</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq5" value="wrong" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">B) They both happen in summer.</div>
+                            </label>
+                            <label class="flex items-center cursor-pointer group">
+                                <input type="radio" name="rq5" value="correct" class="hidden radio-custom">
+                                <div class="w-full p-4 sm:p-3 rounded border border-gray-700 text-gray-300 group-hover:border-gray-500 transition-colors">C) They are both about remembering the dead.</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row justify-between items-center border-t border-gray-700 gap-4">
+                        <div id="reading-result" class="font-mono text-lg font-bold hidden text-center w-full sm:w-auto"></div>
+                        <button type="button" onclick="gradeQuiz('reading-quiz', 5, 'reading-result')" class="bg-spooky-orange hover:bg-orange-600 text-spooky-dark font-bold font-mono py-3 sm:py-2 px-6 rounded transition-colors w-full sm:w-auto">
+                            Run Diagnostics
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: VIDEO ================= -->
+        <section id="tab-video" class="tab-content hidden flex flex-col gap-4 sm:gap-6 w-full">
+            
+            <div class="glow-border bg-black rounded-lg overflow-hidden shadow-2xl">
+                <!-- Using a popular, simple Halloween history video by 'Simple History' -->
+                <div class="relative w-full" style="padding-top: 56.25%;">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/Tn6zTsbHr7M" title="Where does Halloween come from?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="bg-spooky-panel rounded-lg p-6 border border-gray-700">
+                <h3 class="font-mono text-xl text-spooky-green mb-4">>> VIDEO_ANALYSIS.exe (10 Questions)</h3>
+                <p class="text-sm text-gray-400 mb-6">Watch the video above and answer these questions. If you don't hear everything perfectly, try to use your logic!</p>
+
+                <form id="video-quiz" class="space-y-6">
+                    <!-- Video Questions generated via JS for cleaner HTML, or hardcoded for simplicity. Hardcoded for easy editing by the student -->
+                    
+                    <!-- V1 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">1. What ancient people started the festival of Samhain?</p>
+                        <select name="vq1" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">The Romans</option>
+                            <option value="correct">The Celts</option>
+                            <option value="wrong">The Egyptians</option>
+                        </select>
+                    </div>
+
+                    <!-- V2 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">2. What season was ending during Samhain?</p>
+                        <select name="vq2" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">Spring</option>
+                            <option value="correct">Summer</option>
+                            <option value="wrong">Winter</option>
+                        </select>
+                    </div>
+
+                    <!-- V3 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">3. What did people believe happened on this night?</p>
+                        <select name="vq3" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">Animals started talking</option>
+                            <option value="correct">The world of the living and dead connected</option>
+                            <option value="wrong">The sun stopped moving</option>
+                        </select>
+                    </div>
+
+                    <!-- V4 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">4. What religion changed Samhain into "All Saints' Day"?</p>
+                        <select name="vq4" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="correct">Christianity</option>
+                            <option value="wrong">Buddhism</option>
+                            <option value="wrong">Hinduism</option>
+                        </select>
+                    </div>
+
+                    <!-- V5 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">5. What does the word "Halloween" come from?</p>
+                        <select name="vq5" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">Hello Winter</option>
+                            <option value="wrong">Hollow Evening</option>
+                            <option value="correct">All Hallows' Eve</option>
+                        </select>
+                    </div>
+
+                    <!-- V6 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">6. What did poor people ask for in the Middle Ages (an old version of trick-or-treating)?</p>
+                        <select name="vq6" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">Money</option>
+                            <option value="correct">Soul cakes</option>
+                            <option value="wrong">Apples</option>
+                        </select>
+                    </div>
+
+                    <!-- V7 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">7. In America, why did people use pumpkins instead of turnips?</p>
+                        <select name="vq7" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="correct">Pumpkins were easier to find and carve</option>
+                            <option value="wrong">Pumpkins tasted better</option>
+                            <option value="wrong">Turnips were illegal</option>
+                        </select>
+                    </div>
+
+                    <!-- V8 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">8. Why did people wear scary costumes?</p>
+                        <select name="vq8" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">To look beautiful</option>
+                            <option value="correct">To trick the ghosts into thinking they were also ghosts</option>
+                            <option value="wrong">To stay warm in the winter</option>
+                        </select>
+                    </div>
+
+                    <!-- V9 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">9. What do children say today to get candy?</p>
+                        <select name="vq9" class="w-full p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green">
+                            <option value="">-- Select Answer --</option>
+                            <option value="correct">Trick or treat!</option>
+                            <option value="wrong">Give me sugar!</option>
+                            <option value="wrong">Happy Samhain!</option>
+                        </select>
+                    </div>
+
+                    <!-- V10 -->
+                    <div class="bg-[#0a0a0f] p-4 rounded border border-gray-800">
+                        <p class="font-bold text-white mb-2">10. Is Halloween only celebrated in the USA today?</p>
+                        <select name="vq10" class="w-full p-3 sm:p-2 bg-spooky-panel border border-gray-600 rounded text-gray-300 focus:outline-none focus:border-spooky-green text-base">
+                            <option value="">-- Select Answer --</option>
+                            <option value="wrong">Yes, only in America.</option>
+                            <option value="correct">No, it is celebrated in many countries around the world.</option>
+                            <option value="wrong">It is not celebrated anymore.</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row justify-between items-center border-t border-gray-700 mt-6 gap-4">
+                        <div id="video-result" class="font-mono text-lg font-bold hidden text-center w-full sm:w-auto"></div>
+                        <button type="button" onclick="gradeQuiz('video-quiz', 10, 'video-result')" class="bg-spooky-green hover:bg-green-600 text-spooky-dark font-bold font-mono py-3 sm:py-2 px-6 rounded transition-colors w-full sm:w-auto">
+                            Submit Final Data
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Modal for Messages (replaces alert) -->
+    <div id="message-modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-50">
+        <div class="bg-spooky-panel p-8 rounded-lg border-2 border-spooky-purple max-w-md w-full text-center shadow-[0_0_30px_rgba(157,78,221,0.5)]">
+            <h2 id="modal-title" class="text-3xl font-mono font-bold mb-4"></h2>
+            <p id="modal-text" class="text-gray-300 mb-6 font-sans text-lg"></p>
+            <button onclick="closeModal()" class="bg-spooky-purple hover:bg-purple-600 text-white font-mono py-2 px-6 rounded transition-colors w-full">
+                Close [X]
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Tab Switching Logic ---
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Show target tab
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Reset all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn p-2 sm:px-4 sm:py-2 rounded border border-gray-600 text-gray-300 transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2";
+            });
+
+            // Highlight active button
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            if (tabId === 'tab-system') {
+                activeBtn.className = "nav-btn p-2 sm:px-4 sm:py-2 rounded bg-spooky-orange text-spooky-dark font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2";
+            } else if (tabId === 'tab-reading') {
+                activeBtn.className = "nav-btn p-2 sm:px-4 sm:py-2 rounded bg-spooky-orange text-spooky-dark font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2";
+            } else if (tabId === 'tab-video') {
+                activeBtn.className = "nav-btn p-2 sm:px-4 sm:py-2 rounded bg-spooky-purple text-white font-bold transition-all flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2";
+            }
+        }
+
+        // --- 2. Typewriter Effect for Intro ---
+        const introText = [
+            "Initializing system...",
+            "Loading spooky module...",
+            "Accessing English Level: A2",
+            "Connecting to database...",
+            "Welcome, Student. Let's learn about Halloween."
+        ];
+        
+        let lineIndex = 0;
+        let charIndex = 0;
+        const typingSpeed = 40;
+        const container = document.getElementById('typewriter-text');
+        
+        function typeWriter() {
+            if (lineIndex < introText.length) {
+                if (charIndex === 0) {
+                    container.innerHTML += `<div id="line-${lineIndex}">> <span class="text"></span><span class="cursor-blink">_</span></div>`;
+                }
+                
+                const currentLineText = introText[lineIndex];
+                const lineElement = document.querySelector(`#line-${lineIndex} .text`);
+                
+                if (charIndex < currentLineText.length) {
+                    lineElement.innerHTML += currentLineText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, typingSpeed);
+                } else {
+                    document.querySelector(`#line-${lineIndex} .cursor-blink`).remove();
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 400); // pause between lines
+                }
+            } else {
+                container.innerHTML += `<div>> System ready. <span class="cursor-blink">_</span></div>`;
+            }
+        }
+
+        // Start typing effect on load
+        window.onload = () => {
+            typeWriter();
+        };
+
+        // --- 3. Custom Modal Logic (No alerts) ---
+        function showModal(title, text, isSuccess) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-text').innerText = text;
+            
+            const titleEl = document.getElementById('modal-title');
+            if (isSuccess) {
+                titleEl.className = "text-3xl font-mono font-bold mb-4 text-spooky-green glow-text";
+            } else {
+                titleEl.className = "text-3xl font-mono font-bold mb-4 text-spooky-orange glow-text";
+            }
+
+            document.getElementById('message-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('message-modal').classList.add('hidden');
+        }
+
+        // --- 4. Quiz Grading Logic ---
+        function gradeQuiz(formId, totalQuestions, resultElementId) {
+            const form = document.getElementById(formId);
+            const formData = new FormData(form);
+            let score = 0;
+            let answered = 0;
+
+            for (let [key, value] of formData.entries()) {
+                answered++;
+                if (value === 'correct') {
+                    score++;
+                }
+            }
+
+            if (answered < totalQuestions) {
+                showModal("Error: Data Incomplete", `You have only answered ${answered} out of ${totalQuestions} questions. Please finish all questions!`, false);
+                return;
+            }
+
+            const resultEl = document.getElementById(resultElementId);
+            resultEl.classList.remove('hidden');
+            resultEl.innerText = `SCORE: ${score}/${totalQuestions}`;
+
+            if (score === totalQuestions) {
+                resultEl.className = "font-mono text-lg font-bold text-spooky-green";
+                showModal("Access Granted! 🎃", "Perfect score! You are a Halloween expert. Great job comparing the holidays and understanding the history.", true);
+            } else if (score >= totalQuestions / 2) {
+                resultEl.className = "font-mono text-lg font-bold text-yellow-400";
+                showModal("Good Job! 👍", `You got ${score} out of ${totalQuestions}. Review the text or video to find the ones you missed!`, true);
+            } else {
+                resultEl.className = "font-mono text-lg font-bold text-red-500";
+                showModal("Keep Trying! 👻", `You got ${score} out of ${totalQuestions}. Don't be scared, just try again!`, false);
+            }
+        }
+    </script>
+</body>
+</html>
